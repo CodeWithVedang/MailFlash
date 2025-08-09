@@ -1,0 +1,322 @@
+/* CSS Variables for Themes */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #222;
+  --header-bg: #ffffff;
+  --card-bg: #ffffff;
+  --btn-bg: #007bff;
+  --btn-hover-bg: #0056b3;
+  --delete-btn-bg: #dc3545;
+  --delete-btn-hover-bg: #a71d2a;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --border: #eee;
+  --modal-bg: rgba(0, 0, 0, 0.6);
+  --toast-bg: #333;
+  --toast-text: #fff;
+  --skeleton-bg: #e0e0e0;
+  --skeleton-shine: #f5f5f5;
+}
+
+body.dark-theme {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --header-bg: #2c2c2c;
+  --card-bg: #2c2c2c;
+  --btn-bg: #1e90ff;
+  --btn-hover-bg: #4682b4;
+  --delete-btn-bg: #ff4d4d;
+  --delete-btn-hover-bg: #cc3333;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --border: #444;
+  --modal-bg: rgba(0, 0, 0, 0.8);
+  --toast-bg: #555;
+  --toast-text: #fff;
+  --skeleton-bg: #444;
+  --skeleton-shine: #555;
+}
+
+/* RESET & BASICS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: var(--header-bg);
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* CENTER CONTAINER */
+.center-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+
+/* EMAIL BOX */
+.email-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+#tempEmail {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* BUTTONS */
+.action-btn {
+  padding: 10px;
+  background: var(--btn-bg);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.1s;
+}
+
+.action-btn:hover {
+  background: var(--btn-hover-bg);
+  transform: translateY(-2px);
+}
+
+.action-btn.delete {
+  background: var(--delete-btn-bg);
+}
+
+.action-btn.delete:hover {
+  background: var(--delete-btn-hover-bg);
+}
+
+.theme-btn {
+  background: var(--btn-bg);
+}
+
+.theme-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+.tagline {
+  margin: 15px 0;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* INBOX */
+.inbox {
+  width: 100%;
+  max-width: 700px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-height: 150px;
+  animation: fadeIn 0.5s ease;
+}
+
+.message-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.message-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.message-item strong {
+  color: var(--text-color);
+  flex: 1;
+  font-weight: 500;
+}
+
+.message-item small {
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+/* SKELETON LOADING */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-item {
+  background: var(--skeleton-bg);
+  border-radius: 8px;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 700px;
+  color: var(--text-color);
+}
+
+.modal-content .close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: var(--toast-bg);
+  color: var(--toast-text);
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* FOOTER */
+footer {
+  background: var(--header-bg);
+  padding: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+footer a {
+  color: var(--btn-bg);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .email-box {
+    flex-direction: column;
+    align-items: center;
+  }
+  .action-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
