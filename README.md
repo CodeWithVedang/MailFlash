@@ -69,7 +69,8 @@ MailFlash uses the **Mail.tm API**:
 
 ## Screenshots
 
-![MailFlash UI](logo.png)
+![White Theme](/screenshot/sc1.jpg)
+![Dark Theme](/screenshot/sc2.jpg)
 
 ## License
 
@@ -81,5 +82,3 @@ This project is licensed under the MIT License — feel free to use and modify i
 
 ```
 
-If you want, I can also add **GIF previews** showing the theme toggle and inbox loading for better presentation in GitHub. That would make the README more engaging.
-```
