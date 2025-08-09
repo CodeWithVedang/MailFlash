@@ -70,6 +70,7 @@ MailFlash uses the **Mail.tm API**:
 ## Screenshots
 
 ![White Theme](/screenshot/sc1.jpg)
+
 ![Dark Theme](/screenshot/sc2.jpg)
 
 ## License
