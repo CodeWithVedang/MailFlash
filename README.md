@@ -67,6 +67,9 @@ MailFlash uses the **Mail.tm API**:
   * `GET /messages` – Fetch inbox messages
   * `GET /messages/{id}` – Fetch full email details
 
+## Live Preview
+* **Visit-** `https://mail-flash.vercel.app/`
+
 ## Screenshots
 
 ![White Theme](/screenshot/sc1.jpg)
