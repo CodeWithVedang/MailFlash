@@ -68,7 +68,7 @@ MailFlash uses the **Mail.tm API**:
   * `GET /messages/{id}` – Fetch full email details
 
 ## Live Preview
-* **Visit-** `https://mail-flash.vercel.app/`
+[Click Here mail-flash.vercel.app](https://mail-flash.vercel.app/)
 
 ## Screenshots
 
