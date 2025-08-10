@@ -25,7 +25,7 @@ MailFlash is a simple, responsive temporary email web app that uses the [Mail.tm
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/mailflash.git
+   git clone https://github.com/CodeWithVedang/MailFlash.git
    cd mailflash
    ```
 
