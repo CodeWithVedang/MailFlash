@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MailFlash</title>
-  <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="logo.png">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MailFlash — Disposable Email</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body class="light-theme">
   <div class="wrapper">
     <header>
-      <img src="logo.png" alt="MailFlash Logo" class="logo">
-      <h1>MailFlash</h1>
-      <button id="themeToggle" class="action-btn theme-btn"><i class="fas fa-moon"></i></button>
+      <div class="logo-container">
+        <img src="logo.png" alt="MailFlash Logo" class="logo" />
+        <h1>MailFlash</h1>
+      </div>
+      <button id="themeToggle" class="action-btn theme-btn" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
     </header>
-    <div class="center-container">
-      <div class="email-box">
-        <span id="tempEmail">Loading...</span>
+
+    <main class="center-container">
+      <div class="email-card">
+        <div class="email-display" id="emailDisplay">
+          <span id="tempEmail">Generating your email...</span>
+          <div class="email-loader" id="emailLoader" style="display: none;">
+            <div class="spinner"></div>
+          </div>
+        </div>
         <div class="action-buttons">
           <button id="copyBtn" class="action-btn" title="Copy Email"><i class="fas fa-copy"></i></button>
           <button id="refreshBtn" class="action-btn" title="Refresh Inbox"><i class="fas fa-sync-alt"></i></button>
-          <button id="deleteBtn" class="action-btn delete" title="Delete Email"><i class="fas fa-trash"></i></button>
+          <button id="deleteBtn" class="action-btn delete" title="Delete & Create New"><i class="fas fa-trash"></i></button>
         </div>
       </div>
+
       <p class="tagline">Instant, secure, disposable email at lightning speed.</p>
-      <h2>Inbox</h2>
-      <div id="inbox" class="inbox"></div>
-    </div>
+
+      <section class="inbox-section">
+        <h2 class="inbox-title">Inbox</h2>
+        <div id="inbox" class="inbox">
+          <div class="skeleton">
+            <div class="skeleton-item"></div>
+            <div class="skeleton-item"></div>
+            <div class="skeleton-item"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer>
-      Made by <a href="https://github.com/CodeWithVedang/" target="_blank">CodeWithVedang</a>
+      Made with ❤️ by
+      <a href="https://github.com/CodeWithVedang/" target="_blank" rel="noopener">Vedang</a>
     </footer>
+
+    <!-- Notification Toast Container -->
+    <div id="notificationContainer" class="notification-container"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
