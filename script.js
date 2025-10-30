@@ -203,19 +203,52 @@ function extractOTP(text) {
 }
 
 // Extract confirmation link
+// 🔗 SMART LINK DETECTION — Enhanced for button-style activation emails
 function extractConfirmationLink(html, text) {
-  let fullContent = (html || "") + " " + (text || "");
+  if (!html) return null;
+
+  // Parse HTML safely
   const parser = new DOMParser();
-  const doc = parser.parseFromString(`<div>${html || ""}</div>`, "text/html");
-  const linksInHtml = Array.from(doc.querySelectorAll("a[href]")).map(a => a.href);
-  const urlRegex = /https?:\/\/[^\s<>"')\]]+/gi;
-  const rawUrls = (fullContent.match(urlRegex) || []);
-  const allUrls = [...new Set([...linksInHtml, ...rawUrls])];
-  const keywords = ['verify', 'confirm', 'activate', 'validate', 'register', 'signup', 'email', 'token', 'account'];
-  return allUrls.find(url => {
-    const lower = url.toLowerCase();
-    return keywords.some(kw => lower.includes(kw));
-  }) || null;
+  const doc = parser.parseFromString(html, "text/html");
+
+  // Get all <a> tags with href
+  const links = Array.from(doc.querySelectorAll("a[href]"));
+
+  // Keywords in link text or URL that indicate activation
+  const urlKeywords = ['verify', 'confirm', 'activate', 'validate', 'register', 'signup', 'email', 'token', 'account'];
+  const textKeywords = ['activate', 'confirm', 'verify', 'validate', 'click here', 'get started', 'enable'];
+
+  for (const link of links) {
+    const href = link.href;
+    const linkText = (link.textContent || link.innerText || '').toLowerCase().trim();
+
+    // Skip mailto, tel, etc.
+    if (!href || !href.startsWith('http')) continue;
+
+    const urlLower = href.toLowerCase();
+
+    // Check if URL contains activation keywords
+    const urlMatches = urlKeywords.some(kw => urlLower.includes(kw));
+    // Or if link text suggests activation
+    const textMatches = textKeywords.some(kw => linkText.includes(kw));
+
+    if (urlMatches || textMatches) {
+      return href;
+    }
+  }
+
+  // Fallback: if no keyword match, return first activation-looking URL
+  for (const link of links) {
+    const href = link.href;
+    if (href && href.startsWith('http')) {
+      const urlLower = href.toLowerCase();
+      if (urlLower.includes('token') || urlLower.includes('code') || urlLower.includes('email')) {
+        return href;
+      }
+    }
+  }
+
+  return null;
 }
 
 // Create DOM element for a message
