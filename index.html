@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MailFlash — Disposable Email</title>
+  <title>MailFlash — Disposable Email Service</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link
@@ -17,37 +17,46 @@
 </head>
 <body class="light-theme">
   <div class="wrapper">
-    <header>
+    <header role="banner">
       <div class="logo-container">
         <img src="logo.png" alt="MailFlash Logo" class="logo" />
         <h1>MailFlash</h1>
       </div>
-      <button id="themeToggle" class="action-btn theme-btn" aria-label="Toggle theme">
+      <button id="themeToggle" class="action-btn theme-btn" aria-label="Toggle dark/light theme">
         <i class="fas fa-moon"></i>
       </button>
     </header>
 
-    <main class="center-container">
-      <div class="email-card">
-        <div class="email-display" id="emailDisplay">
-          <span id="tempEmail">Generating your email...</span>
-          <div class="email-loader" id="emailLoader" style="display: none;">
-            <div class="spinner"></div>
+    <main class="center-container" role="main">
+      <section class="email-section" aria-labelledby="email-header">
+        <h2 id="email-header" class="visually-hidden">Temporary Email</h2>
+        <div class="email-card">
+          <div class="email-display" id="emailDisplay">
+            <span id="tempEmail" aria-live="polite">Generating your email...</span>
+            <div class="email-loader" id="emailLoader" style="display: none;" aria-hidden="true">
+              <div class="spinner"></div>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button id="copyBtn" class="action-btn" title="Copy Email to Clipboard" aria-label="Copy Email">
+              <i class="fas fa-copy"></i>
+            </button>
+            <button id="refreshBtn" class="action-btn" title="Refresh Inbox" aria-label="Refresh Inbox">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+            <button id="deleteBtn" class="action-btn delete" title="Delete Current Email and Create New" aria-label="Delete and Create New Email">
+              <i class="fas fa-trash"></i>
+            </button>
           </div>
         </div>
-        <div class="action-buttons">
-          <button id="copyBtn" class="action-btn" title="Copy Email"><i class="fas fa-copy"></i></button>
-          <button id="refreshBtn" class="action-btn" title="Refresh Inbox"><i class="fas fa-sync-alt"></i></button>
-          <button id="deleteBtn" class="action-btn delete" title="Delete & Create New"><i class="fas fa-trash"></i></button>
-        </div>
-      </div>
+      </section>
 
       <p class="tagline">Instant, secure, disposable email at lightning speed.</p>
 
-      <section class="inbox-section">
-        <h2 class="inbox-title">Inbox</h2>
-        <div id="inbox" class="inbox">
-          <div class="skeleton">
+      <section class="inbox-section" aria-labelledby="inbox-header">
+        <h2 id="inbox-header" class="inbox-title">Inbox</h2>
+        <div id="inbox" class="inbox" role="list">
+          <div class="skeleton" aria-hidden="true">
             <div class="skeleton-item"></div>
             <div class="skeleton-item"></div>
             <div class="skeleton-item"></div>
@@ -56,13 +65,13 @@
       </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       Made with ❤️ by
-      <a href="https://github.com/CodeWithVedang/" target="_blank" rel="noopener">CodeWithVedang</a>
+      <a href="https://github.com/CodeWithVedang/" target="_blank" rel="noopener noreferrer">CodeWithVedang</a>
     </footer>
 
     <!-- Notification Toast Container -->
-    <div id="notificationContainer" class="notification-container"></div>
+    <div id="notificationContainer" class="notification-container" aria-live="polite"></div>
   </div>
 
   <script src="script.js"></script>

@@ -92,28 +92,46 @@ h1 {
   gap: 28px;
 }
 
+.email-section {
+  width: 100%;
+  max-width: 620px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .email-card {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
   background: var(--card);
   padding: 20px 24px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   width: 100%;
-  max-width: 620px;
 }
 
 .email-display {
   position: relative;
+  flex: 1;
   min-width: 240px;
-  text-align: center;
+  text-align: left;
   font-weight: 600;
   font-size: 1.15rem;
   color: var(--text);
   word-break: break-all;
+  transition: opacity 0.3s ease;
 }
 
 .email-loader {
@@ -156,10 +174,12 @@ h1 {
   box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2);
 }
 
-.action-btn:hover {
+.action-btn:hover,
+.action-btn:focus {
   background: var(--primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+  outline: none;
 }
 
 .action-btn.delete {
@@ -167,7 +187,8 @@ h1 {
   box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
 }
 
-.action-btn.delete:hover {
+.action-btn.delete:hover,
+.action-btn.delete:focus {
   background: var(--danger-dark);
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
 }
@@ -194,7 +215,7 @@ h1 {
 .inbox-title {
   font-size: 1.5rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   margin-bottom: 12px;
   color: var(--text);
 }
@@ -235,9 +256,11 @@ h1 {
   margin-bottom: 0;
 }
 
-.message-item:hover {
+.message-item:hover,
+.message-item:focus {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  outline: none;
 }
 
 .message-item-header {
@@ -287,12 +310,19 @@ h1 {
   transition: var(--transition);
 }
 
+.action-button:hover,
+.action-button:focus {
+  transform: translateY(-1px);
+  outline: none;
+}
+
 .copy-otp-btn {
   background: var(--success);
   color: white;
 }
 
-.copy-otp-btn:hover {
+.copy-otp-btn:hover,
+.copy-otp-btn:focus {
   background: var(--success-dark);
 }
 
@@ -301,7 +331,8 @@ h1 {
   color: white;
 }
 
-.confirm-btn:hover {
+.confirm-btn:hover,
+.confirm-btn:focus {
   background: var(--primary-dark);
 }
 
@@ -387,8 +418,10 @@ h1 {
   margin-top: -8px;
 }
 
-.modal-close:hover {
+.modal-close:hover,
+.modal-close:focus {
   color: var(--text);
+  outline: none;
 }
 
 .modal-meta {
@@ -458,8 +491,10 @@ footer a {
   font-weight: 600;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:focus {
   text-decoration: underline;
+  outline: none;
 }
 
 /* =============== ANIMATIONS =============== */
@@ -485,15 +520,19 @@ footer a:hover {
 
   .email-card {
     padding: 18px;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .email-display {
     min-width: auto;
     font-size: 1.05rem;
+    text-align: center;
   }
 
   .action-buttons {
     justify-content: center;
+    width: 100%;
   }
 
   .inbox {

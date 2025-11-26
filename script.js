@@ -264,6 +264,8 @@ function createMessageElement(msg) {
 
   const item = document.createElement("div");
   item.className = "message-item";
+  item.setAttribute("role", "listitem");
+  item.setAttribute("tabindex", "0");
   item.innerHTML = `
     <div class="message-item-header">
       <div>
@@ -299,6 +301,11 @@ function createMessageElement(msg) {
   }
 
   item.addEventListener("click", () => openMessageModal(msg));
+  item.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      openMessageModal(msg);
+    }
+  });
   return item;
 }
 
@@ -306,6 +313,9 @@ function createMessageElement(msg) {
 function openMessageModal(msg) {
   const modal = document.createElement("div");
   modal.className = "modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-labelledby", "modal-title");
   const from = msg.from?.address || "unknown";
   const date = new Date(msg.createdAt).toLocaleString();
   const bodyContent = msg.html || (msg.text ? msg.text.replace(/\n/g, "<br>") : "(empty)");
@@ -313,8 +323,8 @@ function openMessageModal(msg) {
   modal.innerHTML = `
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">${msg.subject || "(no subject)"}</h2>
-        <button class="modal-close">&times;</button>
+        <h2 class="modal-title" id="modal-title">${msg.subject || "(no subject)"}</h2>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-meta">
         <p><strong>From:</strong> ${from}</p>
@@ -330,6 +340,7 @@ function openMessageModal(msg) {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.remove();
   });
+  closeBtn.focus(); // Improve accessibility by focusing close button
 }
 
 // Notifications
