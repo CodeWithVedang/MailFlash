@@ -10,13 +10,6 @@ import { motion } from 'framer-motion';
 
 export default function Home() {
   const { account, token } = useMailStore();
-  const { createAccount } = useAuth();
-
-  useEffect(() => {
-    if (!account || !token) {
-      createAccount();
-    }
-  }, [account, token, createAccount]);
 
   return (
     <main className="flex flex-col items-center min-h-screen">

@@ -10,7 +10,7 @@ import { Domain } from '@/types';
 
 export const EmailCard = () => {
   const { account, isLoading, error: storeError } = useMailStore();
-  const { createAccount, logout, getAvailableDomains } = useAuth();
+  const { createAccount, logout, getAvailableDomains, deleteCurrentAccount } = useAuth();
   const { fetchInbox } = useInbox();
   
   const [copied, setCopied] = useState(false);
@@ -56,8 +56,7 @@ export const EmailCard = () => {
   };
 
   const handleDelete = () => {
-    logout();
-    createAccount();
+    deleteCurrentAccount();
   };
 
   if (isCustomizing) {
@@ -207,9 +206,18 @@ export const EmailCard = () => {
           </button>
           
           <button
+            onClick={() => setIsCustomizing(true)}
+            className="flex-1 md:flex-none flex items-center justify-center w-full md:w-14 h-14 rounded-2xl bg-secondary text-foreground hover:bg-secondary/80 transition-all active:scale-95 border border-border/50 group"
+            title="Change or Customize Email"
+          >
+            <Settings2 className="w-6 h-6 transition-transform group-hover:rotate-45" />
+            <span className="ml-2 md:hidden font-bold">Customize</span>
+          </button>
+
+          <button
             onClick={handleDelete}
             className="flex-1 md:flex-none flex items-center justify-center w-full md:w-14 h-14 rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all active:scale-95 border border-red-500/10"
-            title="Delete and regenerate"
+            title="Delete Current"
           >
             <Trash2 className="w-6 h-6" />
           </button>

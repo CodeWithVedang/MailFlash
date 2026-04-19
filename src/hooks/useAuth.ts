@@ -20,10 +20,10 @@ export const useAuth = () => {
         address = `${randomName}@${domain}`;
       }
 
-      await mailService.createAccount(address, password);
+      const newAccount = await mailService.createAccount(address, password);
       const tokenData = await mailService.getToken(address, password);
       
-      setAccount({ address, password });
+      setAccount({ id: newAccount.id, address, password });
       setToken(tokenData.token);
       return true;
     } catch (err: any) {
@@ -49,5 +49,18 @@ export const useAuth = () => {
     storeLogout();
   }, [storeLogout]);
 
-  return { createAccount, logout, getAvailableDomains };
+  const deleteCurrentAccount = useCallback(async () => {
+    const currentAccount = useMailStore.getState().account;
+    if (currentAccount?.id) {
+      try {
+        await mailService.deleteAccount(currentAccount.id);
+      } catch (err) {
+        console.warn('Failed to delete account from API:', err);
+      }
+    }
+    logout();
+    createAccount();
+  }, [logout, createAccount]);
+
+  return { createAccount, logout, deleteCurrentAccount, getAvailableDomains };
 };

@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import { Message } from '../types';
 
 interface MailStore {
-  account: { address: string; password: string } | null;
+  account: { id: string; address: string; password: string } | null;
   token: string | null;
   messages: Message[];
   isLoading: boolean;
@@ -11,7 +11,7 @@ interface MailStore {
   error: string | null;
   theme: 'light' | 'dark';
   
-  setAccount: (account: { address: string; password: string } | null) => void;
+  setAccount: (account: { id: string; address: string; password: string } | null) => void;
   setToken: (token: string | null) => void;
   setMessages: (messages: Message[]) => void;
   addMessages: (newMessages: Message[]) => void;
