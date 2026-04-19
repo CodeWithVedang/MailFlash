@@ -2,7 +2,7 @@
 
 MailFlash is a modern, production-grade temporary email service built with **Next.js 16**, **React 19**, and **Tailwind CSS v4**. It allows users to generate instant, anonymous email addresses to bypass registrations, avoid spam, and stay private online.
 
-![MailFlash Banner](https://raw.githubusercontent.com/CodeWithVedang/MailFlash/main/legacy/screenshot/sc1.jpg) *(Note: Replace with updated v2 screenshot when available)*
+![MailFlash Banner](https://raw.githubusercontent.com/CodeWithVedang/MailFlash/6188c0291642b3e52e554b9ca99b0cd671c03559/src/styles/screenshot1.png)
 
 ## ✨ Key Features
 
