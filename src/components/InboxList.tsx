@@ -20,8 +20,8 @@ export const InboxList = () => {
 
   return (
     <div className="w-full max-w-2xl px-4 mt-8 pb-20">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
+        <div className="flex items-center gap-2 self-start sm:self-center">
           <InboxIcon className="w-6 h-6 text-primary" />
           <h2 className="text-xl font-bold text-foreground">Inbox</h2>
           <span className="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-xs font-bold">
@@ -29,14 +29,14 @@ export const InboxList = () => {
           </span>
         </div>
 
-        <div className="relative group">
+        <div className="relative group w-full sm:w-auto">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <input
             type="text"
             placeholder="Search emails..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-9 pr-4 py-2 bg-secondary border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 w-40 sm:w-60 transition-all outline-none"
+            className="pl-9 pr-4 py-2.5 bg-secondary border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 w-full sm:w-60 transition-all outline-none shadow-sm"
           />
         </div>
       </div>

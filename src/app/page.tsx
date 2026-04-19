@@ -42,8 +42,21 @@ export default function Home() {
         <InboxList />
       </div>
 
-      <footer className="w-full py-8 text-center text-sm text-muted-foreground border-t border-border mt-auto">
-        <p>© {new Date().getFullYear()} MailFlash — Secure & Disposable</p>
+      <footer className="w-full py-10 text-center text-sm text-muted-foreground border-t border-border mt-20">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p>© {new Date().getFullYear()} MailFlash — Secure & Disposable</p>
+          <p className="flex items-center gap-1.5">
+            Developed with ❤️ by{' '}
+            <a 
+              href="https://github.com/CodeWithVedang" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary font-bold hover:underline transition-all"
+            >
+              CodeWithVedang
+            </a>
+          </p>
+        </div>
       </footer>
     </main>
   );
