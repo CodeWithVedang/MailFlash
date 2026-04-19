@@ -45,5 +45,9 @@ export const useAuth = () => {
     }
   }, []);
 
+  const logout = useCallback(() => {
+    storeLogout();
+  }, [storeLogout]);
+
   return { createAccount, logout, getAvailableDomains };
 };
